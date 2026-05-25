@@ -1,3 +1,9 @@
+<p align="center">
+  <img src="logo.svg" width="180" />
+</p>
+
+<h1 align="center">AI Sentry</h1>
+<p align="center">AI Agent Reliability OS — Trace · Replay · Policy Engine</p>
 🧠 AI Sentry — AI Agent Reliability OS
 
 > **觀測、模擬、解釋、預測、攔截、治理 AI Agent 行為的作業系統**
