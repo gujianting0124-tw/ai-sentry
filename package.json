@@ -1,0 +1,9 @@
+{
+  "name": "ai-sentry",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "node examples/openai-agent/index.js",
+    "replay": "node packages/replay-cli/src/index.js sess-1"
+  }
+}

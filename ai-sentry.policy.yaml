@@ -1,0 +1,11 @@
+rules:
+  - id: block-email
+    when:
+      event.payload.tool: "email"
+    then:
+      action: "BLOCK"
+  - id: warn-high-risk
+    when:
+      event.payload.riskScore > 0.8
+    then:
+      action: "WARN"

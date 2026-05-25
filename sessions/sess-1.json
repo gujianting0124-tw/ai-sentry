@@ -1,0 +1,20 @@
+[
+  {
+    "sessionId": "sess-1",
+    "tool": "search",
+    "input": "weather in Tokyo",
+    "latency": 0,
+    "riskScore": 0.7758763437009338,
+    "timestamp": 1779694823066,
+    "decision": "ALLOW"
+  },
+  {
+    "sessionId": "sess-1",
+    "tool": "email",
+    "input": "send confidential report",
+    "latency": 0,
+    "riskScore": 0.25640963209846424,
+    "timestamp": 1779694823070,
+    "decision": "BLOCK"
+  }
+]
