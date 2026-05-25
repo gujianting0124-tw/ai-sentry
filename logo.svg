@@ -1,0 +1,20 @@
+<svg width="240" height="240" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+
+  <!-- Outer Shield -->
+  <path d="M120 10 L210 50 L210 140 Q120 220 30 140 L30 50 Z"
+        fill="#111" stroke="#444" stroke-width="4"/>
+
+  <!-- Inner Circuit Lines -->
+  <circle cx="120" cy="95" r="38" fill="none" stroke="#00E0A8" stroke-width="6"/>
+  <line x1="120" y1="57" x2="120" y2="30" stroke="#00E0A8" stroke-width="6"/>
+  <line x1="150" y1="110" x2="180" y2="130" stroke="#00E0A8" stroke-width="6"/>
+  <line x1="90" y1="110" x2="60" y2="130" stroke="#00E0A8" stroke-width="6"/>
+
+  <!-- AI Node -->
+  <circle cx="120" cy="95" r="14" fill="#00E0A8"/>
+
+  <!-- Text -->
+  <text x="120" y="205" font-size="28" text-anchor="middle" fill="#111"
+        font-family="Segoe UI, Roboto, sans-serif">AI Sentry</text>
+
+</svg>
