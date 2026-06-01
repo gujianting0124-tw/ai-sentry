@@ -123,17 +123,7 @@ EXECUTION COMPILER (編譯安全計畫)
 CONTROL PLANE (執行控制)
      ↓
 REPLAY UI / DASHBOARD
-```
-
----
-
-💰 商業模式
-
-方案 價格 適用
-Free $0/月 個人開發者
-Pro $49/月 小型團隊
-Team $199/月 中型公司
-Enterprise 客製 銀行、醫療、合規需求
+``
 
 ---
 
