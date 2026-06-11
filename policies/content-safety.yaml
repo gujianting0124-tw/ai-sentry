@@ -1,0 +1,67 @@
+default: "ALLOW"
+rules:
+  - id: "block-csam"
+    description: "Block known CSAM image hashes or high-confidence CSAM detections"
+    category: "child-exploitation"
+    match:
+      content_hash_in: "csam_hash_db"
+      confidence: "high"
+    decision: "DENY"
+    action:
+      - "quarantine"
+      - "notify:legal-team"
+      - "create_audit:event=csam_blocked"
+
+  - id: "flag-suspicious-csam"
+    description: "Flag probable CSAM for human review"
+    category: "child-exploitation"
+    match:
+      model_score_greater_than: 0.7
+    decision: "FLAG"
+    action:
+      - "require_human_review"
+      - "create_ticket"
+
+  - id: "block-phishing"
+    description: "Block URLs flagged as phishing by reputation feeds"
+    category: "phishing"
+    match:
+      url_reputation_in: ["phishing","malicious"]
+    decision: "DENY"
+    action:
+      - "rewrite_response:replace_url_with_block_notice"
+      - "create_audit:event=phishing_blocked"
+
+  - id: "block-darkweb"
+    description: "Block .onion and known tor services"
+    category: "darkweb"
+    match:
+      domain_type: "tor-hidden-service"
+    decision: "DENY"
+    action:
+      - "deny_delivery"
+      - "audit"
+
+  - id: "block-malvertising"
+    description: "Block known malvertising landing pages"
+    category: "malvertising"
+    match:
+      url_reputation_in: ["malicious-ad","malicious-redirect"]
+    decision: "DENY"
+    action:
+      - "quarantine"
+      - "audit"
+
+  - id: "block-dangerous-download"
+    description: "Block attachments with known malicious hashes or suspicious file types from untrusted sources"
+    category: "malware"
+    match:
+      file_hash_in: "malware_hash_db"
+    decision: "DENY"
+    action:
+      - "quarantine_file"
+      - "notify_security"
+
+policy_metadata:
+  version: "2026-06-11"
+  author: "security-team"
