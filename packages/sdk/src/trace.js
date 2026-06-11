@@ -1,6 +1,9 @@
-const fs = require("fs");
-const path = require("path");
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 const SESSION_DIR = path.join(process.cwd(), "sessions");
 
 function persistEvent(event) {
@@ -16,7 +19,7 @@ function persistEvent(event) {
   fs.writeFileSync(file, JSON.stringify(events, null, 2));
 }
 
-exports.trace = async ({ sessionId, payload }) => {
+export async function trace({ sessionId, payload }) {
   const started = Date.now();
   const riskScore = Math.random();
 
@@ -43,4 +46,4 @@ exports.trace = async ({ sessionId, payload }) => {
   }
 
   return event;
-};
+}

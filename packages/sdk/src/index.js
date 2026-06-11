@@ -1,7 +1,7 @@
-module.exports = {
-  ...require("./trace"),
-  ...require("./types"),
-  init(config) {
-    console.log("🧠 AI Sentry initialized");
-  }
-};
+import { trace } from "./trace.js";
+
+export { trace };
+
+export function init(config) {
+  console.log("🧠 AI Sentry initialized");
+}
