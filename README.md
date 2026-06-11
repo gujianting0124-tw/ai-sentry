@@ -3,6 +3,148 @@
 </p>
 
 <h1 align="center">AI Sentry</h1>
+<p align="center"><b>AI Agent Reliability OS — Trace · Replay · Predict · Govern</b></p>
+
+<p align="center">
+AI Sentry 是一套 <b>AI 行為作業系統（AI Behavior OS）</b>，用來讓任何 AI Agent 的行為變得可觀測、可預測、可治理、可審計。
+</p>
+
+---
+
+🧠 What is AI Sentry?
+
+AI Sentry 不是 SDK、不是監控工具、不是 CI 工具。  
+它是一個 AI Agent 行為治理核心（Behavior Governance Kernel），提供：
+
+- 🔍 Trace — 觀測 AI Agent 的每一步行為  
+- 🧪 Replay — 重播與模擬行為，找出根因  
+- 🔮 Predict — 預測變更可能造成的行為偏移  
+- 🛡️ Intercept — 攔截不安全或不符合政策的行為  
+- 📜 Audit — 產生完整、不可變的審計紀錄  
+- ⚖️ Govern — 以政策與能力模型治理 AI Agent  
+
+AI Sentry 的目標是：  
+讓 AI Agent 的行為變得可控、可預測、可審計、可治理。
+
+---
+
+🏛️ System Architecture
+
+AI Sentry 的架構由五大核心組成：
+
+1. Session Model — 身份、上下文、意圖  
+2. Capability Model — 權限、TTL、約束、不可變能力  
+3. Policy Engine — 驗證、約束、意圖一致性  
+4. Runtime Kernel — 行為攔截、重播、預測、漂移偵測  
+5. Audit System — 不可變審計事件
+
+詳細架構請見：  
+👉 docs/ARCHITECTURE.md
+
+---
+
+🔐 Security Model
+
+AI Sentry 採用 Capability-Based Security：
+
+- 每個行為都需要一個 capability  
+- capability 是不可變、可審計、可撤銷  
+- 所有 capability 都是 identity-bound  
+- 所有行為都經過 deterministic validation pipeline  
+- 所有違規行為都會觸發 drift detection 或 revocation  
+
+詳細安全模型請見：  
+👉 docs/POLICY_MODEL.md  
+👉 docs/CAPABILITY_SCHEMA.md  
+👉 docs/REVOCATION_MODEL.md
+
+---
+
+🧩 Core Documents
+
+AI Sentry 的完整規格文件：
+
+- ARCHITECTURE.md — 系統架構  
+- THREAT_MODEL.md — 威脅模型  
+- DESIGN_PRINCIPLES.md — 設計原則  
+- POLICY_MODEL.md — 政策模型  
+- RUNTIME_MODEL.md — 執行模型  
+- CAPABILITY_SCHEMA.md — 能力結構  
+- SESSION_MODEL.md — Session 模型  
+- AUDIT_MODEL.md — 審計模型  
+- REVOCATION_MODEL.md — 撤銷模型  
+
+這些文件構成 AI Sentry 的完整安全框架。
+
+---
+
+🚀 Quick Start
+
+`bash
+npm install ai-sentry
+`
+
+建立一個最小的 Sentry：
+
+`js
+import { Sentry } from "ai-sentry";
+
+const sentry = new Sentry({
+  policy: "./ai-sentry.policy.yaml"
+});
+`
+
+驗證一個行為：
+
+`js
+await sentry.validate({
+  action: "write:file",
+  target: "/tmp/output.txt",
+  identity: "agent-42"
+});
+`
+
+---
+
+🧪 Examples
+
+範例程式碼位於：
+
+`
+examples/
+  ├── 01-basic-policy.js
+  ├── 02-capability-lifecycle.js
+  ├── 03-drift-detection.js
+  ├── 04-revocation-demo.js
+`
+
+---
+
+🛣️ Roadmap
+
+- [ ] Policy DSL v2  
+- [ ] Multi-agent global memory  
+- [ ] Temporal Replay Engine v2  
+- [ ] Web sandbox runtime  
+- [ ] Visualizer UI  
+- [ ] Cloud audit backend  
+
+---
+
+📜 License
+
+MIT License.
+
+---
+
+🙌 Contributing
+
+歡迎 PR、Issue、提案、討論。  
+AI Sentry 是一個開放的 AI 安全框架，期待你的參與。<p align="center">
+  <img src="logo.svg" width="180" />
+</p>
+
+<h1 align="center">AI Sentry</h1>
 <p align="center">AI Agent Reliability OS — Trace · Replay · Policy Engine</p>
 🧠 AI Sentry — AI Agent Reliability OS
 
