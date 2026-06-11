@@ -1,4 +1,4 @@
-const { init, trace } = require("../../packages/sdk/src");
+import { init, trace } from "../../packages/sdk/src/index.js";
 
 init({ apiKey: "demo-key" });
 
