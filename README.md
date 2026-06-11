@@ -1,150 +1,180 @@
-<p align="center">
-  <img src="logo.svg" width="180" />
-</p>
+🏛️ 1. System Architecture（全展開）
 
-<h1 align="center">AI Sentry</h1>
+AI Sentry is a modular Behavior OS composed of five cooperating subsystems.  
+Each subsystem is independently testable, replaceable, and observable.
 
-<p align="center"><b>AI Agent Reliability OS — Trace · Replay · Predict · Govern</b></p>
+1.1 Session Model — Identity, Intent, Context
 
-<p align="center">
-AI Sentry is an <b>AI Behavior Operating System</b> that makes AI agent behavior observable, predictable, governable, and auditable.
-</p>
+Defines who the agent is, why it is acting, and under what constraints.
 
----
+包含：
 
-## 🧠 What is AI Sentry?
+- Identity — user / agent / system  
+- Intent — declared purpose (e.g., “generate-report”)  
+- Context — environment, metadata, memory  
+- State — ephemeral runtime state  
+- Trace ID — unique session lineage  
 
-AI Sentry is not an SDK, not a monitoring tool, and not a CI pipeline.  
-It is a **Behavior Governance Kernel** that provides:
-
-- 🔍 **Trace** — Observe every action taken by an AI agent  
-- 🧪 **Replay** — Reproduce and simulate behavior for root‑cause analysis  
-- 🔮 **Predict** — Forecast behavior drift before it happens  
-- 🛡️ **Intercept** — Block unsafe or policy‑violating actions  
-- 📜 **Audit** — Generate immutable, forensic‑grade audit logs  
-- ⚖️ **Govern** — Enforce policies and capability‑based constraints  
-
-The mission of AI Sentry:
-
-> **Make AI agent behavior controllable, predictable, auditable, and governable.**
+Session Model 是所有行為治理的根基。
 
 ---
 
-## 🏛️ System Architecture
+1.2 Capability Model — Immutable Permission Tokens
 
-AI Sentry is built on five core components:
+AI Sentry 採用 Capability-Based Security。
 
-1. **Session Model** — Identity, intent, and contextual state  
-2. **Capability Model** — Immutable permissions, TTL, constraints  
-3. **Policy Engine** — Validation, intent alignment, rule enforcement  
-4. **Runtime Kernel** — Interception, replay, drift detection, prediction  
-5. **Audit System** — Append‑only, tamper‑proof event logs  
+每個 capability 包含：
 
-Full architecture:  
-👉 `docs/ARCHITECTURE.md`
+- action — 可執行的行為  
+- scope — 限制範圍  
+- constraints — filters / limits  
+- ttl — 有效期限  
+- binding — identity-bound  
+- immutable — 發行後不可修改  
 
----
-
-## 🔐 Security Model
-
-AI Sentry uses **Capability‑Based Security**:
-
-- Every action requires a capability  
-- Capabilities are immutable and auditable  
-- Capabilities are identity‑bound  
-- Revocation is global and deterministic  
-
-This makes AI Sentry a **verifiable, governable, and transparent** AI safety framework.
+Capabilities 是 AI Sentry 的「權限原子」。
 
 ---
 
-## 📦 Repository Structure
+1.3 Policy Engine — Rules, Alignment, Enforcement
 
-```
-ai-sentry/
- ├── docs/
- │    ├── ARCHITECTURE.md
- │    ├── THREAT_MODEL.md
- │    ├── DESIGN_PRINCIPLES.md
- │    ├── POLICY_MODEL.md
- │    ├── RUNTIME_MODEL.md
- │    ├── CAPABILITY_SCHEMA.md
- │    ├── SESSION_MODEL.md
- │    ├── AUDIT_MODEL.md
- │    └── REVOCATION_MODEL.md
- ├── src/
- ├── examples/
- ├── demo/
- └── README.md
-```
+Policy Engine 是 AI Sentry 的「法律層」。
+
+它負責：
+
+- allow / deny 規則  
+- intent alignment  
+- contextual validation  
+- risk scoring  
+- fallback routing  
+- escalation path  
+
+Policies 以 Policy-as-Code 撰寫，可版本化、可審計。
 
 ---
 
-## 🚀 Quick Start
+1.4 Runtime Kernel — Interception, Replay, Drift Detection
 
-```bash
-npm install ai-sentry
-```
+Runtime Kernel 是 AI Sentry 的核心。
 
-```js
-import { SentryKernel } from "ai-sentry";
+它提供：
 
-const kernel = new SentryKernel();
+- Interception — 攔截不安全行為  
+- Replay — 重播過去 session  
+- Simulation — 模擬假設情境  
+- Drift Detection — 偵測行為偏移  
+- Prediction — 預測未來行為  
 
-const session = kernel.startSession({
-  identity: "user-123",
-  intent: "generate-report"
-});
-
-const result = await kernel.run({
-  session,
-  action: "generate",
-  input: "Create a summary of Q1 performance."
-});
-```
+Kernel 是讓 AI Sentry 成為「行為作業系統」的關鍵。
 
 ---
 
-## 📜 Policy-as-Code Example
+1.5 Audit System — Immutable, Forensic Logs
 
-```yaml
+每個事件都會被記錄成不可變的 audit entry：
+
+- timestamp  
+- identity  
+- capability  
+- policy result  
+- input / output  
+- risk score  
+- kernel decision  
+
+Audit System 支援：
+
+- forensics  
+- debugging  
+- compliance  
+- reproducibility  
+
+---
+
+🔐 2. Security Model（全展開）
+
+AI Sentry 的安全模型基於三大原則：
+
+2.1 Capability-Based Security
+- 最小權限  
+- 不可變  
+- 可審計  
+- 可撤銷  
+
+2.2 Intent-Bound Execution
+每個行為都必須與 session intent 一致。
+
+2.3 Deterministic Governance
+相同輸入 → 相同決策 → 相同審計結果。
+
+---
+
+📜 3. Policy Model（全展開）
+
+Policies are declarative, deterministic, and version-controlled.
+
+3.1 Policy Structure
+`yaml
 policy:
-  id: "reporting-policy"
+  id: "example-policy"
   allow:
     - action: "generate"
       when:
         intent: "generate-report"
   deny:
     - action: "delete"
-```
+`
+
+3.2 Policy Evaluation Flow
+1. Load session  
+2. Load capabilities  
+3. Evaluate allow rules  
+4. Evaluate deny rules  
+5. Compute risk score  
+6. Kernel decision  
 
 ---
 
-## 🧪 Behavior Replay Example
+⚙️ 4. Runtime Kernel（全展開）
 
-```bash
-sentry replay --session 2024-05-01-abc123
-```
+4.1 Execution Pipeline
+1. Receive action request  
+2. Validate session  
+3. Validate capability  
+4. Evaluate policy  
+5. Risk scoring  
+6. Interception or execution  
+7. Audit logging  
 
----
-
-## 🛣️ Roadmap
-
-- [ ] Web sandbox runtime  
-- [ ] CLI runtime  
-- [ ] Capability revocation engine  
-- [ ] Drift prediction module  
-- [ ] Multi-agent governance  
-- [ ] Visual audit explorer  
-
----
-
-## 🤝 Contributing
-
-Contributions, issues, and discussions are welcome.
+4.2 Replay Engine
+- Deterministic  
+- Time-travel debugging  
+- Forensic reconstruction  
 
 ---
 
-## 📄 License
+🧾 5. Audit Model（全展開）
 
-MIT License
+5.1 Audit Entry Schema
+`json
+{
+  "timestamp": "...",
+  "session": "...",
+  "identity": "...",
+  "action": "...",
+  "capability": "...",
+  "policy": {
+    "allow": true,
+    "deny": false,
+    "risk": 0.12
+  },
+  "kernel_decision": "allow",
+  "input": "...",
+  "output": "..."
+}
+`
+
+5.2 Audit Guarantees
+- Append-only  
+- Tamper-proof  
+- Cryptographically signed（可選）  
+- Replay-compatible  
