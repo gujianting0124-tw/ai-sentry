@@ -1,0 +1,17 @@
+[
+  {
+    "action": "search",
+    "query": "weather",
+    "decision": "ALLOW"
+  },
+  {
+    "action": "email",
+    "to": "test@example.com",
+    "decision": "BLOCK"
+  },
+  {
+    "action": "search",
+    "query": "news",
+    "decision": "ALLOW"
+  }
+]
