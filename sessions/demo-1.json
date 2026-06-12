@@ -1,0 +1,20 @@
+[
+  {
+    "sessionId": "demo-1",
+    "tool": "search",
+    "input": "weather in Tokyo",
+    "riskScore": 0.78,
+    "timestamp": 1781241005107,
+    "decision": "ALLOW",
+    "reason": "Search operations are safe."
+  },
+  {
+    "sessionId": "demo-1",
+    "tool": "email",
+    "input": "send confidential report",
+    "riskScore": 0.26,
+    "timestamp": 1781241005107,
+    "decision": "BLOCK",
+    "reason": "High-risk confidential email"
+  }
+]

@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "node examples/openai-agent/index.js",
-    "replay": "node packages/replay-cli/src/index.js"
+    "replay": "node packages/replay-cli/src/index.cjs",
+    "demo": "node demo/index.js",
+    "demo-full": "node demo/index.js && npm run replay -- demo-1"
   },
   "dependencies": {}
 }
