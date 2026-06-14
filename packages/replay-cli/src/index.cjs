@@ -1,35 +1,25 @@
 const fs = require("fs");
-const path = require("path");
+const color = require("../../../log-color");
 
-const sessionName = process.argv[2];
-if (!sessionName) {
-  console.error("❌ Missing session name. Usage: npm run replay -- <session>");
+const name = process.argv[2];
+const file = `sessions/${name}.json`;
+
+if (!fs.existsSync(file)) {
+  color.err(`❌ Session not found: ${name}`);
   process.exit(1);
 }
 
-const sessionPath = path.join(__dirname, "../../../sessions", `${sessionName}.json`);
+const session = JSON.parse(fs.readFileSync(file, "utf8"));
 
-if (!fs.existsSync(sessionPath)) {
-  console.error(`❌ Session file not found: ${sessionPath}`);
-  process.exit(1);
+color.info(`🧠 Replay Session: ${name}`);
+
+for (const e of session.events) {
+  const tag = e.decision === "allow" ? color.ok : color.err;
+  tag(`[${e.decision.toUpperCase()}] ${e.action}`);
+  console.log(`  • input: ${e.input}`);
+  console.log(`  • risk: ${e.risk}`);
+  console.log(`  • time: ${e.timestamp}`);
+  console.log("");
 }
 
-const events = JSON.parse(fs.readFileSync(sessionPath, "utf8"));
-
-console.log(`\n🧠 Replay Session: ${sessionName}\n`);
-
-for (const event of events) {
-  const decision = event.decision || "UNKNOWN";
-  const tool = event.tool || "UNKNOWN";
-  const input = event.input || "(no input)";
-  const risk = event.riskScore !== undefined ? event.riskScore.toFixed(2) : "N/A";
-  const time = event.timestamp ? new Date(event.timestamp).toISOString() : "N/A";
-const green = "\x1b[32m";
-const red = "\x1b[31m";
-const reset = "\x1b[0m";
-const color = decision === "ALLOW" ? green : red;
-console.log(`${color}[${decision}]${reset} ${tool}`);
-  console.log(`  • input: ${input}`);
-  console.log(`  • risk: ${risk}`);
-  console.log(`  • time: ${time}\n`);
-}
+color.ok("✅ Replay complete.");
