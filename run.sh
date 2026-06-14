@@ -1,4 +1,4 @@
-#!/data/data/com.termux/files/usr/bin/sh
+#!/usr/bin/env bash
 
 echo "🔧 Updating project..."
 git pull
