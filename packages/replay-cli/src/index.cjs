@@ -13,11 +13,13 @@ const session = JSON.parse(fs.readFileSync(file, "utf8"));
 
 color.info(`🧠 Replay Session: ${name}`);
 
-for (const e of session.events) {
+const events = Array.isArray(session) ? session : (session.events || []);
+
+for (const e of events) {
   const tag = e.decision === "allow" ? color.ok : color.err;
-  tag(`[${e.decision.toUpperCase()}] ${e.action}`);
+  tag(`[${e.decision.toUpperCase()}] ${e.tool}`);
   console.log(`  • input: ${e.input}`);
-  console.log(`  • risk: ${e.risk}`);
+  console.log(`  • risk: ${e.riskScore}`);
   console.log(`  • time: ${e.timestamp}`);
   console.log("");
 }
