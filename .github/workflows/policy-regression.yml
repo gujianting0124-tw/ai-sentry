@@ -19,5 +19,5 @@ jobs:
       - name: Run policy tests
         run: node test/run-policy-tests.js > current.json
 
-      - name: Compare with baseline
-        run: diff baseline.json current.json
+      - name: Compare with baseline (HARD GATE)
+        run: diff -u baseline.json current.json
