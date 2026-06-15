@@ -6,7 +6,9 @@
       "content": "hello"
     },
     "output": {
-      "decision": "block"
+      "decision": "block",
+      "reason": "default_email_block",
+      "ruleId": "GEN_BLOCK_EMAIL"
     }
   },
   {
@@ -28,7 +30,9 @@
       "content": "normal query"
     },
     "output": {
-      "decision": "allow"
+      "decision": "allow",
+      "reason": "default_search_allow",
+      "ruleId": "GEN_ALLOW_SEARCH"
     }
   },
   {
