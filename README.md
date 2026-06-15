@@ -1,79 +1,120 @@
-<<<<<<< HEAD
-## Project Structure
+AI Sentry
 
-- **core/** — Moat Runtime 核心  
-- **trust/** — Trust Boundary  
-- **control/** — AutoController / State Machine  
-- **engine/** — Policy Engine  
-- **replay/** — Replay Engine  
-- **demo/** — Demo scripts  
-- **examples/** — 使用範例  
-- **sessions/** — Session logs  
-- **logs/** — Audit logs  
-- **cli/** — CLI (WIP)  
-- **ARCHITECTURE.md**  
-- **MVP_ROADMAP.md**  
-- **README.md**  
-- **test.js**
-=======
-# AI Sentry
-AI 行為治理系統：讓 AI 變得可控、可審計、可回放。
+AI Agent Reliability OS — Observe, Simulate, Govern, and Replay AI Agent Behavior
 
-![Architecture](./architecture.svg)
+AI Sentry 是一個 AI 行為治理系統（AI Behavior Governance System），  
+讓 AI 代理變得：
 
-[![Node.js Version](https://img.shields.io/badge/node-%3E%3D16-green)](https://nodejs.org/)
-[![NPM](https://img.shields.io/badge/npm-11.16.0-blue)](https://www.npmjs.com/)
-[![License](https://img.shields.io/badge/license-MIT-yellow)](./LICENSE)
-[![Build Status](https://img.shields.io/badge/build-passing-brightgreen)]()
-[![GitHub issues](https://img.shields.io/github/issues/gujianting0124-tw/ai-sentry)](https://github.com/gujianting0124-tw/ai-sentry/issues)
-[![GitHub stars](https://img.shields.io/github/stars/gujianting0124-tw/ai-sentry)](https://github.com/gujianting0124-tw/ai-sentry/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/gujianting0124-tw/ai-sentry)](https://github.com/gujianting0124-tw/ai-sentry/network)
-[![Last Commit](https://img.shields.io/github/last-commit/gujianting0124-tw/ai-sentry)](https://github.com/gujianting0124-tw/ai-sentry/commits/main)
+- 可控（Governable）  
+- 可審計（Auditable）  
+- 可回放（Replayable）  
+- 可模擬（Simulatable）  
+- 可追蹤（Observable）
+
+AI Sentry 的核心理念：  
+> AI 不應該是黑箱。AI 的每一步行為，都應該被記錄、分析、治理與回放。
 
 ---
 
-## Quick Start
+🌐 核心能力（Capabilities）
 
-```bash
+1. Observe — 行為觀察
+- 記錄 AI 每一次 action  
+- 產生 session log  
+- 生成完整的行為軌跡（trace）
+
+2. Govern — 政策治理
+- Policy Engine  
+- Threat Intelligence  
+- Rule-based decision  
+- ALLOW / BLOCK / MODIFY
+
+3. Replay — 行為回放
+- 將 session 重新執行  
+- 用於 debugging、稽核、模型比較、風險分析
+
+4. Simulate — 行為模擬
+- 模擬不同政策下的行為結果  
+- 模擬不同模型的行為差異（未來版本）
+
+---
+
+🧱 專案結構（Project Structure）
+
+`
+ai-sentry/
+├── core/            # Moat Runtime 核心
+├── trust/           # Trust Boundary（信任邊界）
+├── control/         # AutoController / State Machine
+├── engine/          # Policy Engine（政策引擎）
+├── replay/          # Replay Engine（重播引擎）
+├── sessions/        # Session logs（會話日誌）
+├── logs/            # Audit logs（稽核日誌）
+├── cli/             # CLI 工具
+├── demo/            # Demo scripts
+└── examples/        # 使用範例
+`
+
+---
+
+🚀 快速開始（Quick Start）
+
+`bash
 git clone https://github.com/gujianting0124-tw/ai-sentry
 cd ai-sentry
 npm install
 node demo/basic.js
-Project Structure
-core/ — Moat Runtime 核心
+`
 
-trust/ — Trust Boundary
+---
 
-control/ — AutoController / State Machine
+🔁 Replay Example（回放示例）
 
-engine/ — Policy Engine
-
-replay/ — Replay Engine
-
-demo/ — Demo scripts
-
-examples/ — 使用範例
-
-sessions/ — Session logs
-
-logs/ — Audit logs
-
-cli/ — CLI (WIP)
-
-Replay Example
-執行回放測試：
-
-bash
+`bash
 npm run replay -- sess-1
-輸出範例：
+`
 
-程式碼
-🧠 Replay Session: sess-1
+輸出示例：
 
-[ALLOW] search  
-[BLOCK] email  
-[ALLOW] search  
-[BLOCK] email  
-License
-本專案採用 MIT License，詳見 LICENSE 檔案。
->>>>>>> 54e883c (docs: add badges and start-ready README)
+`
+[ALLOW] search
+[BLOCK] email
+[ALLOW] search
+[BLOCK] email
+`
+
+代表政策引擎成功記錄並回放行為。
+
+---
+
+📄 文件（Documentation）
+
+- ARCHITECTURE.md — 系統架構  
+- CAPABILITIES.md — 能力說明  
+- PHILOSOPHY.md — 設計哲學  
+- MVP_ROADMAP.md — MVP 路線圖  
+- ROADMAP_v0.3.md — v0.3 路線圖  
+- PROOF.md — 概念驗證  
+- README.md — 專案介紹  
+
+---
+
+🧪 技術堆疊（Tech Stack）
+
+- TypeScript — 58.4%  
+- JavaScript — 25.3%  
+- Shell — 15.2%  
+- Python — 1.1%
+
+---
+
+👤 貢獻者（Contributors）
+
+- gujianting0124-tw
+
+---
+
+📜 授權（License）
+
+MIT License
+
