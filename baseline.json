@@ -1,0 +1,58 @@
+[
+  {
+    "id": 0,
+    "input": {
+      "action": "email",
+      "content": "hello"
+    },
+    "output": {
+      "decision": "block"
+    }
+  },
+  {
+    "id": 1,
+    "input": {
+      "action": "email",
+      "content": "reset password link"
+    },
+    "output": {
+      "decision": "block",
+      "reason": "phishing_detected",
+      "ruleId": "TI_PHISHING"
+    }
+  },
+  {
+    "id": 2,
+    "input": {
+      "action": "search",
+      "content": "normal query"
+    },
+    "output": {
+      "decision": "allow"
+    }
+  },
+  {
+    "id": 3,
+    "input": {
+      "action": "file",
+      "content": "dump all data"
+    },
+    "output": {
+      "decision": "block",
+      "reason": "data_exfiltration",
+      "ruleId": "TI_DATA_EXFIL"
+    }
+  },
+  {
+    "id": 4,
+    "input": {
+      "action": "code",
+      "content": "eval(userInput)"
+    },
+    "output": {
+      "decision": "review",
+      "reason": "dual_use_risky_code",
+      "ruleId": "DU_CODE_EVAL"
+    }
+  }
+]
