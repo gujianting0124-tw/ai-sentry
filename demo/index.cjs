@@ -1,34 +1,42 @@
+// demo/index.cjs
+
 const fs = require("fs");
 const path = require("path");
+const { applyPolicy } = require("../policy/engine.js");
 
-const rules = require("../policy/rules");
-const { applyPolicy } = require("../policy/engine");
-
-const events = [
-  {
-    sessionId: "demo-1",
-    tool: "search",
-    input: "weather in Tokyo",
-    riskScore: 0.78,
-    timestamp: Date.now()
-  },
-  {
-    sessionId: "demo-1",
-    tool: "email",
-    input: "send confidential report",
-    riskScore: 0.26,
-    timestamp: Date.now()
-  }
-];
-
-for (const e of events) {
-  const result = applyPolicy(e, rules);
-  e.decision = result.decision;
-  e.reason = result.reason;
+function makeEvent(action, input) {
+  return {
+    timestamp: Date.now(),
+    session: { identity: "demo-user" },
+    action,
+    input,
+    risk: Math.random() // demo 用
+  };
 }
 
-const outPath = path.join(__dirname, "../sessions/demo-1.json");
-fs.writeFileSync(outPath, JSON.stringify(events, null, 2));
+function runDemo() {
+  const events = [
+    makeEvent("search", "weather in Tokyo"),
+    makeEvent("email", "send confidential report")
+  ];
 
-console.log("✅ Demo session generated: sessions/demo-1.json");
-console.log("👉 Now run: npm run replay -- demo-1");
+  const results = events.map((e) => {
+    const decision = applyPolicy(e);
+    return { event: e, decision };
+  });
+
+  const sessionId = "demo-1";
+  const outDir = path.join(__dirname, "..", "sessions");
+  const outPath = path.join(outDir, `${sessionId}.json`);
+
+  if (!fs.existsSync(outDir)) {
+    fs.mkdirSync(outDir, { recursive: true });
+  }
+
+  fs.writeFileSync(outPath, JSON.stringify({ id: sessionId, results }, null, 2));
+
+  console.log(`✅ Demo session generated: sessions/${sessionId}.json`);
+  console.log(`👉 Now run: npm run replay -- ${sessionId}`);
+}
+
+runDemo();

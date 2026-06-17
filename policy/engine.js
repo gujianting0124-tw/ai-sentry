@@ -3,19 +3,20 @@ const threatintel = require("./threatintel.cjs");
 const dualuse = require("./dualuse.cjs");
 
 const pipelines = [
-  threatintel,
-  dualuse,
-  general
+  { name: "threatintel", rules: threatintel },
+  { name: "dualuse", rules: dualuse },
+  { name: "general", rules: general }
 ];
 
-module.exports = function evaluate(event) {
+function applyPolicy(event) {
   for (const group of pipelines) {
-    for (const rule of group) {
+    for (const rule of group.rules) {
       if (typeof rule.match === "function" && rule.match(event)) {
         return {
           decision: rule.decision,
           reason: rule.reason,
-          ruleId: rule.id
+          ruleId: rule.id,
+          pipeline: group.name
         };
       }
     }
@@ -24,6 +25,9 @@ module.exports = function evaluate(event) {
   return {
     decision: "allow",
     reason: "default_allow",
-    ruleId: "DEFAULT"
+    ruleId: "DEFAULT",
+    pipeline: "none"
   };
-};
+}
+
+module.exports = { applyPolicy };

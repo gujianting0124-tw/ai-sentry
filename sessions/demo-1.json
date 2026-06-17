@@ -1,20 +1,39 @@
-[
-  {
-    "sessionId": "demo-1",
-    "tool": "search",
-    "input": "weather in Tokyo",
-    "riskScore": 0.78,
-    "timestamp": 1781421054257,
-    "decision": "ALLOW",
-    "reason": "Search operations are safe."
-  },
-  {
-    "sessionId": "demo-1",
-    "tool": "email",
-    "input": "send confidential report",
-    "riskScore": 0.26,
-    "timestamp": 1781421054257,
-    "decision": "BLOCK",
-    "reason": "High-risk confidential email"
-  }
-]
+{
+  "id": "demo-1",
+  "results": [
+    {
+      "event": {
+        "timestamp": 1781694822816,
+        "session": {
+          "identity": "demo-user"
+        },
+        "action": "search",
+        "input": "weather in Tokyo",
+        "risk": 0.21451869745877306
+      },
+      "decision": {
+        "decision": "allow",
+        "reason": "default_search_allow",
+        "ruleId": "GEN_ALLOW_SEARCH",
+        "pipeline": "general"
+      }
+    },
+    {
+      "event": {
+        "timestamp": 1781694822816,
+        "session": {
+          "identity": "demo-user"
+        },
+        "action": "email",
+        "input": "send confidential report",
+        "risk": 0.6452467243026413
+      },
+      "decision": {
+        "decision": "block",
+        "reason": "default_email_block",
+        "ruleId": "GEN_BLOCK_EMAIL",
+        "pipeline": "general"
+      }
+    }
+  ]
+}
